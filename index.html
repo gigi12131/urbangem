@@ -192,17 +192,24 @@ function calculatePrice(apartmentId, nights) {
 }
 
 let checkin = '', checkout = '';
-document.addEventListener("DOMContentLoaded", function () {
-  $('#daterange').daterangepicker({
-    autoUpdateInput: false,
-    locale: { cancelLabel: 'Clear' }
-  });
 
-  $('#daterange').on('apply.daterangepicker', function (ev, picker) {
-    $(this).val(picker.startDate.format('YYYY-MM-DD') + ' to ' + picker.endDate.format('YYYY-MM-DD'));
-    checkin = picker.startDate.format('YYYY-MM-DD');
-    checkout = picker.endDate.format('YYYY-MM-DD');
-  });
+document.addEventListener("DOMContentLoaded", function () {
+  const input = document.getElementById("daterange");
+
+  if (window.jQuery && input) {
+    $('#daterange').daterangepicker({
+      autoUpdateInput: false,
+      locale: { cancelLabel: 'Clear' }
+    });
+
+    $('#daterange').on('apply.daterangepicker', function (ev, picker) {
+      $(this).val(picker.startDate.format('YYYY-MM-DD') + ' to ' + picker.endDate.format('YYYY-MM-DD'));
+      checkin = picker.startDate.format('YYYY-MM-DD');
+      checkout = picker.endDate.format('YYYY-MM-DD');
+    });
+  } else {
+    console.error("jQuery or #daterange input missing.");
+  }
 
   document.getElementById('bookingForm').addEventListener('submit', function(e) {
     e.preventDefault();
