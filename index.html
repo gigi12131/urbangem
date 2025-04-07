@@ -193,9 +193,8 @@ function calculatePrice(apartmentId, nights) {
 
 let checkin = '', checkout = '';
 
-document.addEventListener("DOMContentLoaded", function () {
+window.addEventListener("load", function () {
   const input = document.getElementById("daterange");
-
   if (window.jQuery && input) {
     $('#daterange').daterangepicker({
       autoUpdateInput: false,
@@ -207,8 +206,6 @@ document.addEventListener("DOMContentLoaded", function () {
       checkin = picker.startDate.format('YYYY-MM-DD');
       checkout = picker.endDate.format('YYYY-MM-DD');
     });
-  } else {
-    console.error("jQuery or #daterange input missing.");
   }
 
   document.getElementById('bookingForm').addEventListener('submit', function(e) {
