@@ -192,46 +192,44 @@ function calculatePrice(apartmentId, nights) {
 }
 
 let checkin = '', checkout = '';
-$(function() {
+document.addEventListener("DOMContentLoaded", function () {
   $('#daterange').daterangepicker({
     autoUpdateInput: false,
     locale: { cancelLabel: 'Clear' }
   });
-  $('#daterange').on('apply.daterangepicker', function(ev, picker) {
+
+  $('#daterange').on('apply.daterangepicker', function (ev, picker) {
     $(this).val(picker.startDate.format('YYYY-MM-DD') + ' to ' + picker.endDate.format('YYYY-MM-DD'));
     checkin = picker.startDate.format('YYYY-MM-DD');
     checkout = picker.endDate.format('YYYY-MM-DD');
   });
-});
 
-document.getElementById('bookingForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const guests = parseInt(document.getElementById('guests').value);
-  if (!checkin || !checkout || !guests) return;
+  document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const guests = parseInt(document.getElementById('guests').value);
+    if (!checkin || !checkout || !guests) return;
 
-  const nights = countNights(checkin, checkout);
-  if (nights.length === 0) return;
+    const nights = countNights(checkin, checkout);
+    if (nights.length === 0) return;
 
-  let visibleCount = 0;
-  document.querySelectorAll('.apartment').forEach(apartment => {
-    const id = apartment.getAttribute('data-id');
-    const fitsGuests = capacities[id].includes(guests);
-    if (!fitsGuests) {
-      apartment.style.display = 'none';
-    } else {
-      visibleCount++;
-      apartment.style.display = 'block';
-      const price = calculatePrice(id, nights);
-      document.getElementById('price-' + id).textContent = `Total: €${price} for ${nights.length} nights`;
-    }
+    let visibleCount = 0;
+    document.querySelectorAll('.apartment').forEach(apartment => {
+      const id = apartment.getAttribute('data-id');
+      const fitsGuests = capacities[id].includes(guests);
+      if (!fitsGuests) {
+        apartment.style.display = 'none';
+      } else {
+        visibleCount++;
+        apartment.style.display = 'block';
+        const price = calculatePrice(id, nights);
+        document.getElementById('price-' + id).textContent = `Total: €${price} for ${nights.length} nights`;
+      }
+    });
+
+    document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
   });
-
-  document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
 });
 </script>
 
 </body>
 </html>
-
-
-
