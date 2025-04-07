@@ -7,25 +7,21 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" />
   <style>
     body { margin: 0; font-family: Arial, sans-serif; background: #f7f7f7; color: #333; }
-    header {
-      background: url('urban-nest.jpg') center/cover no-repeat;
-      height: 60vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: white;
-    }
-    header h1 {
-      font-size: 40px;
-      background: rgba(0,0,0,0.5);
-      padding: 10px 20px;
-      border-radius: 12px;
-    }
     .container {
       max-width: 900px;
       margin: 40px auto;
       padding: 0 20px;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    .gallery img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 12px;
     }
     .description, .calendar-box {
       background: white;
@@ -38,9 +34,9 @@
       margin-top: 0;
     }
     .calendar-box input {
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
+      width: 220px;
+      padding: 10px;
+      font-size: 14px;
       border-radius: 8px;
       border: 1px solid #ccc;
       margin-bottom: 20px;
@@ -58,15 +54,17 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>Urban Nest – Comfort & Style</h1>
-  </header>
-
   <div class="container">
+    <div class="gallery">
+      <!-- You can replace these images with actual apartment photos -->
+      <img src="https://source.unsplash.com/300x200/?apartment,livingroom" alt="Living Room">
+      <img src="https://source.unsplash.com/300x200/?apartment,kitchen" alt="Kitchen">
+      <img src="https://source.unsplash.com/300x200/?apartment,bedroom" alt="Bedroom">
+    </div>
+
     <div class="description">
-      <h2>About Urban Nest</h2>
+      <h2>Urban Nest – Comfort & Style</h2>
       <p>A beautifully designed one-bedroom apartment featuring a full kitchen, cozy living area, and private balcony. Ideal for couples or solo travelers. Conveniently located in the heart of Alexandroupoli, close to shops, restaurants, and public transport.</p>
-      <p><strong>Pricing:</strong> €80/night (Mon–Thu), €90/night (Fri–Sun)</p>
     </div>
 
     <div class="calendar-box">
