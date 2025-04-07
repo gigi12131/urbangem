@@ -3,239 +3,96 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Urban Gem – Fresh & Central</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  <title>Urban Gem Booking</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" />
   <style>
-    body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #fff; color: #333; }
-    header {
-      background: url('urban-nest.jpg') no-repeat center center/cover;
-      height: 100vh;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 20px;
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
     }
-    header h1 { font-size: 48px; margin-bottom: 10px; text-shadow: 0 0 5px rgba(0,0,0,0.5); }
-    header p { font-size: 20px; text-shadow: 0 0 4px rgba(0,0,0,0.4); }
-    .hero-search {
-      margin-top: 30px;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 20px;
-      border-radius: 20px;
+
+    .hero {
+      background: url('your-hero-image.jpg') no-repeat center center/cover;
+      padding: 80px 20px;
+      text-align: center;
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .search-bar {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
       justify-content: center;
-      color: black;
+      gap: 1rem;
+      margin-top: 20px;
     }
-    .hero-search input,
-    .hero-search select,
-    .hero-search button {
-      padding: 12px;
+
+    .search-bar input,
+    .search-bar select,
+    .search-bar button {
+      padding: 12px 16px;
       font-size: 16px;
+      border-radius: 16px;
       border: 1px solid #ccc;
-      border-radius: 30px;
     }
-    .hero-search button {
-      background-color: #f04e30;
+
+    .search-bar button {
+      background-color: #2d89ef;
       color: white;
       border: none;
       cursor: pointer;
     }
-    section {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .apartment-listing {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-    }
-    .apartment {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-    .apartment img {
-      width: 100%;
-      height: auto;
-    }
-    .apartment .info {
-      padding: 20px;
-    }
-    .apartment h3 {
-      margin-top: 0;
-      font-size: 24px;
-    }
-    .apartment p {
-      margin: 10px 0 20px;
-    }
-    .apartment a {
-      text-decoration: none;
-      color: white;
-      background: #f04e30;
-      padding: 10px 20px;
-      border-radius: 5px;
-      display: inline-block;
-    }
-    .price { font-weight: bold; margin-top: 10px; color: #2a2a2a; }
-    .no-results { display: none; text-align: center; font-size: 18px; color: #d00; margin-top: 20px; }
-    footer {
-      text-align: center;
-      padding: 30px;
-      background: #f0f0f0;
-      margin-top: 60px;
+
+    .calendar-container {
+      display: none; /* Hide calendar-only page container */
     }
   </style>
 </head>
 <body>
-
-<header>
-  <h1>Urban Gem – Fresh & Central</h1>
-  <p>Located in the heart of Alexandroupoli, Greece</p>
-  <form class="hero-search" id="bookingForm">
-    <input type="text" id="daterange" name="daterange" placeholder="Select dates" required>
-    <select name="guests" id="guests" required>
-      <option value="">Guests</option>
-      <option value="1">1 adult</option>
-      <option value="2">2 adults</option>
-      <option value="3">2 adults, 1 child</option>
-      <option value="4">2 adults, 2 children</option>
-      <option value="5">3 adults</option>
-      <option value="6">3 adults, 1 child</option>
-      <option value="7">4 adults</option>
-    </select>
-    <button type="submit">Search</button>
-  </form>
-</header>
-
-<section id="apartments">
-  <h2 style="text-align: center; margin-bottom: 40px;">Our Apartments</h2>
-  <div class="apartment-listing">
-    <div class="apartment" data-id="urban-nest">
-      <img src="urban-nest.jpg" alt="Urban Nest">
-      <div class="info">
-        <h3>Urban Nest – Comfort & Style</h3>
-        <p>A beautifully designed one-bedroom with a full kitchen, balcony, and warm interior. Perfect for couples or solo travelers.</p>
-        <div class="price" id="price-urban-nest"></div>
-        <a href="urban-nest.html">View & Book</a>
-      </div>
+  <section class="hero">
+    <h1>Stay at Urban Gem</h1>
+    <div class="search-bar">
+      <input type="text" id="datepicker" placeholder="Select your stay dates" readonly />
+      <select id="guests">
+        <option value="">Guests</option>
+        <option value="1">1 Adult</option>
+        <option value="2">2 Adults</option>
+        <option value="3">3 Adults</option>
+        <option value="2a2c">2 Adults, 2 Children</option>
+      </select>
+      <button>Search</button>
     </div>
+  </section>
 
-    <div class="apartment" data-id="olive-loft">
-      <img src="olive-loft.jpg" alt="Olive Loft">
-      <div class="info">
-        <h3>Olive Loft – Relaxed Elegance</h3>
-        <p>Relax in a cozy loft with wooden accents, bar-style dining, and a private outdoor balcony for your morning coffee.</p>
-        <div class="price" id="price-olive-loft"></div>
-        <a href="olive-loft.html">View & Book</a>
-      </div>
-    </div>
-
-    <div class="apartment" data-id="studio-light">
-      <img src="studio-light.jpg" alt="The Studio Light">
-      <div class="info">
-        <h3>The Studio Light – Minimal & Chic</h3>
-        <p>Modern and minimalist, this open-plan studio is bright, peaceful, and ideal for digital nomads or a quiet getaway.</p>
-        <div class="price" id="price-studio-light"></div>
-        <a href="studio-light.html">View & Book</a>
-      </div>
-    </div>
-  </div>
-  <div class="no-results" id="noResults">❗ Sorry, no apartments are available for your selection.<br>Try adjusting the number of guests or your dates.</div>
-</section>
-
-<footer>
-  <p>&copy; 2025 Urban Gem – Fresh & Central</p>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-
-<script>
-  let checkin = '', checkout = '';
-
-  window.addEventListener('DOMContentLoaded', function () {
-    const input = document.getElementById('daterange');
-
-    if (input && typeof $ === 'function') {
-      $('#daterange').daterangepicker({
-        autoUpdateInput: false,
-        locale: { cancelLabel: 'Clear' }
-      });
-
-      $('#daterange').on('apply.daterangepicker', function (ev, picker) {
-        $(this).val(picker.startDate.format('YYYY-MM-DD') + ' to ' + picker.endDate.format('YYYY-MM-DD'));
-        checkin = picker.startDate.format('YYYY-MM-DD');
-        checkout = picker.endDate.format('YYYY-MM-DD');
-      });
-    } else {
-      console.error('Date input or jQuery not available!');
-    }
-
-    const prices = {
-      'urban-nest': { weekday: 80, weekend: 90 },
-      'olive-loft': { weekday: 85, weekend: 95 },
-      'studio-light': { weekday: 75, weekend: 85 }
-    };
-
-    const capacities = {
-      'urban-nest': [1, 2, 3, 4, 5],
-      'olive-loft': [1, 2, 3, 4, 5],
-      'studio-light': [1, 2, 3]
-    };
-
-    function countNights(checkin, checkout) {
-      const start = new Date(checkin);
-      const end = new Date(checkout);
-      const nights = [];
-      while (start < end) {
-        nights.push(new Date(start));
-        start.setDate(start.getDate() + 1);
+  <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
+  <script>
+    const picker = new Litepicker({
+      element: document.getElementById('datepicker'),
+      singleMode: false,
+      format: 'DD MMM YYYY',
+      numberOfMonths: 2,
+      numberOfColumns: 2,
+      dropdowns: {
+        minYear: 2024,
+        maxYear: 2030,
+        months: true,
+        years: true
+      },
+      autoApply: true,
+      tooltipText: {
+        one: 'night',
+        other: 'nights'
+      },
+      tooltipNumber: (totalDays) => {
+        return totalDays;
       }
-      return nights;
-    }
-
-    function calculatePrice(apartmentId, nights) {
-      let total = 0;
-      for (const night of nights) {
-        const isWeekend = night.getDay() === 0 || night.getDay() === 6;
-        total += isWeekend ? prices[apartmentId].weekend : prices[apartmentId].weekday;
-      }
-      return total;
-    }
-
-    document.getElementById('bookingForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const guests = parseInt(document.getElementById('guests').value);
-      if (!checkin || !checkout || !guests) return;
-
-      const nights = countNights(checkin, checkout);
-      if (nights.length === 0) return;
-
-      let visibleCount = 0;
-      document.querySelectorAll('.apartment').forEach(apartment => {
-        const id = apartment.getAttribute('data-id');
-        const fitsGuests = capacities[id].includes(guests);
-        if (!fitsGuests) {
-          apartment.style.display = 'none';
-        } else {
-          visibleCount++;
-          apartment.style.display = 'block';
-          const price = calculatePrice(id, nights);
-          document.getElementById('price-' + id).textContent = `Total: €${price} for ${nights.length} nights`;
-        }
-      });
-
-      document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
     });
-  });
-</script>
-
+  </script>
 </body>
 </html>
