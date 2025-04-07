@@ -1,90 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Urban Nest – Comfort & Style</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Urban Nest - Apartment</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" />
   <style>
-    body { margin: 0; font-family: Arial, sans-serif; background: #f7f7f7; color: #333; }
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
     }
+
     .gallery {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 10px;
-      margin-bottom: 30px;
+      padding: 20px;
     }
+
     .gallery img {
       width: 100%;
-      max-width: 300px;
-      border-radius: 12px;
+      border-radius: 16px;
+      object-fit: cover;
     }
-    .description, .calendar-box {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      margin-bottom: 30px;
+
+    .booking-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px;
     }
-    .description h2 {
-      margin-top: 0;
-    }
-    .calendar-box input {
-      width: 220px;
-      padding: 10px;
+
+    #datepicker {
+      padding: 8px 14px;
       font-size: 14px;
-      border-radius: 8px;
+      border-radius: 12px;
       border: 1px solid #ccc;
-      margin-bottom: 20px;
+      width: 220px;
     }
-    .buttons a {
-      display: inline-block;
-      padding: 12px 20px;
-      border-radius: 10px;
-      font-size: 16px;
-      margin-right: 10px;
-      text-decoration: none;
-    }
-    .book { background: #000; color: white; }
-    .whatsapp { background: #25D366; color: white; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="gallery">
-      <!-- You can replace these images with actual apartment photos -->
-      <img src="https://source.unsplash.com/300x200/?apartment,livingroom" alt="Living Room">
-      <img src="https://source.unsplash.com/300x200/?apartment,kitchen" alt="Kitchen">
-      <img src="https://source.unsplash.com/300x200/?apartment,bedroom" alt="Bedroom">
-    </div>
-
-    <div class="description">
-      <h2>Urban Nest – Comfort & Style</h2>
-      <p>A beautifully designed one-bedroom apartment featuring a full kitchen, cozy living area, and private balcony. Ideal for couples or solo travelers. Conveniently located in the heart of Alexandroupoli, close to shops, restaurants, and public transport.</p>
-    </div>
-
-    <div class="calendar-box">
-      <input type="text" id="datepicker" placeholder="Select your stay dates" readonly>
-      <div class="buttons">
-        <a href="#" class="book">Book Now</a>
-        <a href="https://wa.me/306986789781" class="whatsapp" target="_blank">Contact via WhatsApp</a>
-      </div>
-    </div>
+  <div class="gallery">
+    <img src="urban-nest-balcony.jpg" alt="Urban Nest Balcony" />
+    <img src="urban-nest-bathroom.jpg" alt="Urban Nest Bathroom" />
+    <img src="urban-nest-bedroom.jpg" alt="Urban Nest Bedroom" />
+    <img src="urban-nest-bedroom1.jpg" alt="Urban Nest Bedroom Angle 2" />
+    <img src="urban-nest-kitchen1.jpg" alt="Urban Nest Kitchen" />
+    <img src="urban-nest-kitchen2.jpg" alt="Urban Nest Kitchen View 2" />
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js"></script>
+  <div class="booking-container">
+    <input type="text" id="datepicker" placeholder="Select dates" readonly />
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
   <script>
     const picker = new Litepicker({
-      element: document.getElementById("datepicker"),
+      element: document.getElementById('datepicker'),
       singleMode: false,
+      format: 'DD MMM YYYY',
+      dropdowns: {
+        minYear: 2024,
+        maxYear: 2030,
+        months: true,
+        years: true
+      },
+      autoApply: true,
       numberOfMonths: 2,
-      numberOfColumns: 2,
-      format: "DD MMM YYYY",
-      autoApply: true
+      numberOfColumns: 2
     });
   </script>
 </body>
