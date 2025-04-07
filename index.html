@@ -99,7 +99,7 @@
   <h1>Urban Gem – Fresh & Central</h1>
   <p>Located in the heart of Alexandroupoli, Greece</p>
   <form class="hero-search" id="bookingForm">
-    <input type="text" name="daterange" id="daterange" placeholder="Select dates" required>
+    <input type="text" id="daterange" name="daterange" placeholder="Select dates" required>
     <select name="guests" id="guests" required>
       <option value="">Guests</option>
       <option value="1">1 adult</option>
@@ -154,85 +154,87 @@
   <p>&copy; 2025 Urban Gem – Fresh & Central</p>
 </footer>
 
-<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
 <script>
-const prices = {
-  'urban-nest': { weekday: 80, weekend: 90 },
-  'olive-loft': { weekday: 85, weekend: 95 },
-  'studio-light': { weekday: 75, weekend: 85 }
-};
+  let checkin = '', checkout = '';
 
-const capacities = {
-  'urban-nest': [1, 2, 3, 4, 5],
-  'olive-loft': [1, 2, 3, 4, 5],
-  'studio-light': [1, 2, 3]
-};
+  window.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('daterange');
 
-function countNights(checkin, checkout) {
-  const start = new Date(checkin);
-  const end = new Date(checkout);
-  const nights = [];
-  while (start < end) {
-    nights.push(new Date(start));
-    start.setDate(start.getDate() + 1);
-  }
-  return nights;
-}
+    if (input && typeof $ === 'function') {
+      $('#daterange').daterangepicker({
+        autoUpdateInput: false,
+        locale: { cancelLabel: 'Clear' }
+      });
 
-function calculatePrice(apartmentId, nights) {
-  let total = 0;
-  for (const night of nights) {
-    const isWeekend = night.getDay() === 0 || night.getDay() === 6;
-    total += isWeekend ? prices[apartmentId].weekend : prices[apartmentId].weekday;
-  }
-  return total;
-}
+      $('#daterange').on('apply.daterangepicker', function (ev, picker) {
+        $(this).val(picker.startDate.format('YYYY-MM-DD') + ' to ' + picker.endDate.format('YYYY-MM-DD'));
+        checkin = picker.startDate.format('YYYY-MM-DD');
+        checkout = picker.endDate.format('YYYY-MM-DD');
+      });
+    } else {
+      console.error('Date input or jQuery not available!');
+    }
 
-let checkin = '', checkout = '';
+    const prices = {
+      'urban-nest': { weekday: 80, weekend: 90 },
+      'olive-loft': { weekday: 85, weekend: 95 },
+      'studio-light': { weekday: 75, weekend: 85 }
+    };
 
-window.addEventListener("load", function () {
-  const input = document.getElementById("daterange");
-  if (window.jQuery && input) {
-    $('#daterange').daterangepicker({
-      autoUpdateInput: false,
-      locale: { cancelLabel: 'Clear' }
-    });
+    const capacities = {
+      'urban-nest': [1, 2, 3, 4, 5],
+      'olive-loft': [1, 2, 3, 4, 5],
+      'studio-light': [1, 2, 3]
+    };
 
-    $('#daterange').on('apply.daterangepicker', function (ev, picker) {
-      $(this).val(picker.startDate.format('YYYY-MM-DD') + ' to ' + picker.endDate.format('YYYY-MM-DD'));
-      checkin = picker.startDate.format('YYYY-MM-DD');
-      checkout = picker.endDate.format('YYYY-MM-DD');
-    });
-  }
-
-  document.getElementById('bookingForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const guests = parseInt(document.getElementById('guests').value);
-    if (!checkin || !checkout || !guests) return;
-
-    const nights = countNights(checkin, checkout);
-    if (nights.length === 0) return;
-
-    let visibleCount = 0;
-    document.querySelectorAll('.apartment').forEach(apartment => {
-      const id = apartment.getAttribute('data-id');
-      const fitsGuests = capacities[id].includes(guests);
-      if (!fitsGuests) {
-        apartment.style.display = 'none';
-      } else {
-        visibleCount++;
-        apartment.style.display = 'block';
-        const price = calculatePrice(id, nights);
-        document.getElementById('price-' + id).textContent = `Total: €${price} for ${nights.length} nights`;
+    function countNights(checkin, checkout) {
+      const start = new Date(checkin);
+      const end = new Date(checkout);
+      const nights = [];
+      while (start < end) {
+        nights.push(new Date(start));
+        start.setDate(start.getDate() + 1);
       }
-    });
+      return nights;
+    }
 
-    document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
+    function calculatePrice(apartmentId, nights) {
+      let total = 0;
+      for (const night of nights) {
+        const isWeekend = night.getDay() === 0 || night.getDay() === 6;
+        total += isWeekend ? prices[apartmentId].weekend : prices[apartmentId].weekday;
+      }
+      return total;
+    }
+
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const guests = parseInt(document.getElementById('guests').value);
+      if (!checkin || !checkout || !guests) return;
+
+      const nights = countNights(checkin, checkout);
+      if (nights.length === 0) return;
+
+      let visibleCount = 0;
+      document.querySelectorAll('.apartment').forEach(apartment => {
+        const id = apartment.getAttribute('data-id');
+        const fitsGuests = capacities[id].includes(guests);
+        if (!fitsGuests) {
+          apartment.style.display = 'none';
+        } else {
+          visibleCount++;
+          apartment.style.display = 'block';
+          const price = calculatePrice(id, nights);
+          document.getElementById('price-' + id).textContent = `Total: €${price} for ${nights.length} nights`;
+        }
+      });
+
+      document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
+    });
   });
-});
 </script>
 
 </body>
