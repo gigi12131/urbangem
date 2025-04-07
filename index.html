@@ -3,97 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Urban Gem</title>
+  <title>Urban Gem – Short Rentals in Alexandroupoli</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" />
   <style>
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: 'Arial', sans-serif; background-color: #f5f5f5; }
-
-    .hero {
-      background: url('https://source.unsplash.com/1600x600/?apartment') center center/cover no-repeat;
-      padding: 100px 20px;
+    body { margin: 0; font-family: Arial, sans-serif; background: #f7f7f7; color: #333; }
+    header {
+      background: url('https://source.unsplash.com/1600x600/?greece,city') center/cover no-repeat;
       color: white;
       text-align: center;
+      padding: 120px 20px 60px;
     }
-
+    header h1 { font-size: 48px; margin-bottom: 10px; }
+    header p { font-size: 20px; }
     .search-bar {
-      background: #fff;
+      background: white;
       border-radius: 16px;
       padding: 20px;
-      max-width: 900px;
-      margin: 40px auto 0;
+      max-width: 960px;
+      margin: -40px auto 60px;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      align-items: center;
       justify-content: center;
+      gap: 10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
-
     .search-bar input,
     .search-bar select,
     .search-bar button {
-      border: 1px solid #ccc;
-      padding: 12px 16px;
+      padding: 12px;
       font-size: 16px;
-      border-radius: 16px;
-      outline: none;
+      border: 1px solid #ccc;
+      border-radius: 12px;
     }
-
     .search-bar button {
-      background-color: #000;
-      color: #fff;
-      border: none;
+      background: #000;
+      color: white;
       cursor: pointer;
+      border: none;
     }
-
-    .calendar-input { width: 260px; }
-
     .apartments {
       max-width: 1000px;
-      margin: 60px auto;
-      padding: 0 20px;
+      margin: auto;
+      padding: 40px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
     }
-
     .apartment {
       background: white;
-      border-radius: 16px;
-      overflow: hidden;
+      border-radius: 12px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      margin-bottom: 40px;
+      overflow: hidden;
     }
-
-    .apartment img {
-      width: 100%;
-      height: auto;
-    }
-
+    .apartment img { width: 100%; height: auto; }
     .apartment .info {
       padding: 20px;
     }
-
-    .apartment h3 { margin-top: 0; }
-    .apartment p { margin-bottom: 10px; }
+    .apartment h3 { margin: 0 0 10px; }
+    .apartment p { margin: 0 0 15px; font-size: 14px; color: #555; }
     .apartment a {
       display: inline-block;
-      margin-top: 10px;
+      padding: 10px 16px;
       background: #000;
       color: white;
       text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 12px;
+      border-radius: 8px;
     }
   </style>
 </head>
 <body>
-  <div class="hero">
-    <h1>Welcome to Urban Gem</h1>
-    <p>Modern stays in the heart of the city</p>
-  </div>
+  <header>
+    <h1>Urban Gem</h1>
+    <p>Fresh & Central stays in Alexandroupoli</p>
+  </header>
 
   <div class="search-bar">
-    <input type="text" id="datepicker" class="calendar-input" placeholder="Select your stay dates" readonly />
-    <select id="guests">
+    <input type="text" id="datepicker" placeholder="Select dates" readonly>
+    <select>
       <option value="">Guests</option>
       <option value="1">1 Adult</option>
       <option value="2">2 Adults</option>
@@ -104,55 +90,44 @@
     <button>Search</button>
   </div>
 
-  <div class="apartments">
+  <section class="apartments">
     <div class="apartment">
-      <img src="https://source.unsplash.com/800x500/?living-room" alt="Urban Nest">
+      <img src="https://source.unsplash.com/400x300/?apartment,living" alt="Urban Nest">
       <div class="info">
-        <h3>Urban Nest – Comfort & Style</h3>
-        <p>A beautifully designed one-bedroom with a full kitchen, balcony, and warm interior. Perfect for couples or solo travelers.</p>
-        <a href="#">Book Now</a>
+        <h3>Urban Nest</h3>
+        <p>Stylish 1-bedroom with balcony and kitchen. Ideal for couples or solo travelers.</p>
+        <a href="urban-nest.html">Book Now</a>
       </div>
     </div>
 
     <div class="apartment">
-      <img src="https://source.unsplash.com/800x500/?apartment,loft" alt="Olive Loft">
+      <img src="https://source.unsplash.com/400x300/?apartment,loft" alt="Olive Loft">
       <div class="info">
-        <h3>Olive Loft – Relaxed Elegance</h3>
-        <p>Relax in a cozy loft with wooden accents, bar-style dining, and a private outdoor balcony for your morning coffee.</p>
-        <a href="#">Book Now</a>
+        <h3>Olive Loft</h3>
+        <p>Relaxing loft with wood decor, open-plan kitchen, and terrace access.</p>
+        <a href="olive-loft.html">Book Now</a>
       </div>
     </div>
 
     <div class="apartment">
-      <img src="https://source.unsplash.com/800x500/?studio" alt="Studio Light">
+      <img src="https://source.unsplash.com/400x300/?apartment,studio" alt="Studio Light">
       <div class="info">
-        <h3>Studio Light – Minimal & Chic</h3>
-        <p>Modern and minimalist, this open-plan studio is bright, peaceful, and ideal for digital nomads or a quiet getaway.</p>
-        <a href="#">Book Now</a>
+        <h3>Studio Light</h3>
+        <p>Bright minimalist studio. Perfect for short stays and digital nomads.</p>
+        <a href="studio-light.html">Book Now</a>
       </div>
     </div>
-  </div>
+  </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js"></script>
   <script>
     const picker = new Litepicker({
-      element: document.getElementById('datepicker'),
+      element: document.getElementById("datepicker"),
       singleMode: false,
-      format: 'DD MMM YYYY',
       numberOfMonths: 2,
       numberOfColumns: 2,
-      dropdowns: {
-        minYear: 2024,
-        maxYear: 2030,
-        months: true,
-        years: true
-      },
-      autoApply: true,
-      tooltipText: {
-        one: 'night',
-        other: 'nights'
-      },
-      tooltipNumber: (totalDays) => totalDays
+      format: "DD MMM YYYY",
+      autoApply: true
     });
   </script>
 </body>
