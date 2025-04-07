@@ -7,26 +7,43 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" />
   <style>
     body { margin: 0; font-family: Arial, sans-serif; background: #f7f7f7; color: #333; }
-    header {
-      background: url('https://source.unsplash.com/1600x600/?greece,city') center/cover no-repeat;
-      color: white;
+
+    .hero {
+      background: url('https://source.unsplash.com/1600x800/?apartment,greece') center/cover no-repeat;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      padding: 120px 20px 60px;
+      position: relative;
     }
-    header h1 { font-size: 48px; margin-bottom: 10px; }
-    header p { font-size: 20px; }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 20px;
+      color: white;
+    }
+
     .search-bar {
       background: white;
       border-radius: 16px;
       padding: 20px;
-      max-width: 960px;
-      margin: -40px auto 60px;
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
       gap: 10px;
+      justify-content: center;
       box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
+
     .search-bar input,
     .search-bar select,
     .search-bar button {
@@ -35,34 +52,50 @@
       border: 1px solid #ccc;
       border-radius: 12px;
     }
+
     .search-bar button {
       background: #000;
       color: white;
-      cursor: pointer;
       border: none;
+      cursor: pointer;
     }
+
     .apartments {
-      max-width: 1000px;
-      margin: auto;
-      padding: 40px 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 0 20px;
     }
+
     .apartment {
       background: white;
       border-radius: 12px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.05);
       overflow: hidden;
+      margin-bottom: 40px;
     }
-    .apartment img { width: 100%; height: auto; }
+
+    .apartment img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
     .apartment .info {
       padding: 20px;
     }
-    .apartment h3 { margin: 0 0 10px; }
-    .apartment p { margin: 0 0 15px; font-size: 14px; color: #555; }
+
+    .apartment h3 {
+      margin-top: 0;
+    }
+
+    .apartment p {
+      font-size: 14px;
+      color: #555;
+    }
+
     .apartment a {
       display: inline-block;
+      margin-top: 10px;
       padding: 10px 16px;
       background: #000;
       color: white;
@@ -72,27 +105,29 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>Urban Gem</h1>
-    <p>Fresh & Central stays in Alexandroupoli</p>
-  </header>
-
-  <div class="search-bar">
-    <input type="text" id="datepicker" placeholder="Select dates" readonly>
-    <select>
-      <option value="">Guests</option>
-      <option value="1">1 Adult</option>
-      <option value="2">2 Adults</option>
-      <option value="3">3 Adults</option>
-      <option value="2+1">2 Adults + 1 Child</option>
-      <option value="2+2">2 Adults + 2 Children</option>
-    </select>
-    <button>Search</button>
-  </div>
+  <section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Urban Gem</h1>
+      <p>Fresh & Central stays in Alexandroupoli</p>
+      <div class="search-bar">
+        <input type="text" id="datepicker" placeholder="Select dates" readonly>
+        <select>
+          <option value="">Guests</option>
+          <option value="1">1 Adult</option>
+          <option value="2">2 Adults</option>
+          <option value="3">3 Adults</option>
+          <option value="2+1">2 Adults + 1 Child</option>
+          <option value="2+2">2 Adults + 2 Children</option>
+        </select>
+        <button>Search</button>
+      </div>
+    </div>
+  </section>
 
   <section class="apartments">
     <div class="apartment">
-      <img src="https://source.unsplash.com/400x300/?apartment,living" alt="Urban Nest">
+      <img src="https://source.unsplash.com/800x500/?apartment,livingroom" alt="Urban Nest">
       <div class="info">
         <h3>Urban Nest</h3>
         <p>Stylish 1-bedroom with balcony and kitchen. Ideal for couples or solo travelers.</p>
@@ -101,7 +136,7 @@
     </div>
 
     <div class="apartment">
-      <img src="https://source.unsplash.com/400x300/?apartment,loft" alt="Olive Loft">
+      <img src="https://source.unsplash.com/800x500/?apartment,loft" alt="Olive Loft">
       <div class="info">
         <h3>Olive Loft</h3>
         <p>Relaxing loft with wood decor, open-plan kitchen, and terrace access.</p>
@@ -110,7 +145,7 @@
     </div>
 
     <div class="apartment">
-      <img src="https://source.unsplash.com/400x300/?apartment,studio" alt="Studio Light">
+      <img src="https://source.unsplash.com/800x500/?apartment,studio" alt="Studio Light">
       <div class="info">
         <h3>Studio Light</h3>
         <p>Bright minimalist studio. Perfect for short stays and digital nomads.</p>
