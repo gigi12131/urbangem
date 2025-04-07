@@ -3,156 +3,116 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Urban Gem</title>
+  <title>Urban Nest – Comfort & Style</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" />
   <style>
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: 'Arial', sans-serif; background-color: #f5f5f5; }
-
-    .hero {
-      background: url('https://source.unsplash.com/1600x600/?apartment') center center/cover no-repeat;
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8f8f8;
+      color: #333;
+    }
+    header {
+      background: url('https://source.unsplash.com/1600x400/?apartment,interior') center/cover no-repeat;
       padding: 100px 20px;
       color: white;
       text-align: center;
     }
-
-    .search-bar {
-      background: #fff;
-      border-radius: 16px;
-      padding: 20px;
-      max-width: 900px;
-      margin: 40px auto 0;
+    .container {
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .gallery {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      align-items: center;
-      justify-content: center;
     }
-
-    .search-bar input,
-    .search-bar select,
-    .search-bar button {
-      border: 1px solid #ccc;
-      padding: 12px 16px;
-      font-size: 16px;
-      border-radius: 16px;
-      outline: none;
-    }
-
-    .search-bar button {
-      background-color: #000;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-    }
-
-    .calendar-input { width: 260px; }
-
-    .apartments {
-      max-width: 1000px;
-      margin: 60px auto;
-      padding: 0 20px;
-    }
-
-    .apartment {
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      margin-bottom: 40px;
-    }
-
-    .apartment img {
+    .gallery img {
       width: 100%;
-      height: auto;
-    }
-
-    .apartment .info {
-      padding: 20px;
-    }
-
-    .apartment h3 { margin-top: 0; }
-    .apartment p { margin-bottom: 10px; }
-    .apartment a {
-      display: inline-block;
-      margin-top: 10px;
-      background: #000;
-      color: white;
-      text-decoration: none;
-      padding: 10px 20px;
+      max-width: 300px;
       border-radius: 12px;
+    }
+    .info {
+      margin-top: 30px;
+    }
+    .info h2 {
+      margin-top: 0;
+    }
+    .price-box {
+      margin: 30px 0;
+      font-size: 18px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .calendar-container {
+      margin-bottom: 30px;
+    }
+    input[type="text"] {
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+    .book-btn, .whatsapp-btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 16px;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+    .book-btn {
+      background: #000;
+      color: #fff;
+    }
+    .whatsapp-btn {
+      background: #25D366;
+      color: white;
     }
   </style>
 </head>
 <body>
-  <div class="hero">
-    <h1>Welcome to Urban Gem</h1>
-    <p>Modern stays in the heart of the city</p>
-  </div>
+  <header>
+    <h1>Urban Nest – Comfort & Style</h1>
+    <p>One-bedroom with kitchen, balcony, and cozy interior</p>
+  </header>
 
-  <div class="search-bar">
-    <input type="text" id="datepicker" class="calendar-input" placeholder="Select your stay dates" readonly />
-    <select id="guests">
-      <option value="">Guests</option>
-      <option value="1">1 Adult</option>
-      <option value="2">2 Adults</option>
-      <option value="3">3 Adults</option>
-      <option value="2+1">2 Adults + 1 Child</option>
-      <option value="2+2">2 Adults + 2 Children</option>
-    </select>
-    <button>Search</button>
-  </div>
-
-  <div class="apartments">
-    <div class="apartment">
-      <img src="https://source.unsplash.com/800x500/?living-room" alt="Urban Nest">
-      <div class="info">
-        <h3>Urban Nest – Comfort & Style</h3>
-        <p>A beautifully designed one-bedroom with a full kitchen, balcony, and warm interior. Perfect for couples or solo travelers.</p>
-        <a href="#">Book Now</a>
-      </div>
+  <div class="container">
+    <div class="gallery">
+      <img src="https://source.unsplash.com/300x200/?apartment,livingroom" alt="Living Room">
+      <img src="https://source.unsplash.com/300x200/?apartment,kitchen" alt="Kitchen">
+      <img src="https://source.unsplash.com/300x200/?apartment,bedroom" alt="Bedroom">
     </div>
 
-    <div class="apartment">
-      <img src="https://source.unsplash.com/800x500/?apartment,loft" alt="Olive Loft">
-      <div class="info">
-        <h3>Olive Loft – Relaxed Elegance</h3>
-        <p>Relax in a cozy loft with wooden accents, bar-style dining, and a private outdoor balcony for your morning coffee.</p>
-        <a href="#">Book Now</a>
-      </div>
+    <div class="info">
+      <h2>About this Apartment</h2>
+      <p>Urban Nest is a thoughtfully designed one-bedroom apartment featuring a full kitchen, stylish living area, and a private balcony. It's ideal for couples or solo travelers looking for comfort and convenience in the heart of Alexandroupoli.</p>
     </div>
 
-    <div class="apartment">
-      <img src="https://source.unsplash.com/800x500/?studio" alt="Studio Light">
-      <div class="info">
-        <h3>Studio Light – Minimal & Chic</h3>
-        <p>Modern and minimalist, this open-plan studio is bright, peaceful, and ideal for digital nomads or a quiet getaway.</p>
-        <a href="#">Book Now</a>
+    <div class="price-box">
+      <p><strong>Pricing:</strong> €80/night (Mon–Thu), €90/night (Fri–Sun)</p>
+      <div class="calendar-container">
+        <input type="text" id="datepicker" placeholder="Select your dates" readonly>
       </div>
+      <a href="#" class="book-btn">Book Now</a>
+      <a href="https://wa.me/306986789781" class="whatsapp-btn" target="_blank">Contact via WhatsApp</a>
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js"></script>
   <script>
     const picker = new Litepicker({
       element: document.getElementById('datepicker'),
       singleMode: false,
       format: 'DD MMM YYYY',
-      numberOfMonths: 2,
-      numberOfColumns: 2,
-      dropdowns: {
-        minYear: 2024,
-        maxYear: 2030,
-        months: true,
-        years: true
-      },
       autoApply: true,
-      tooltipText: {
-        one: 'night',
-        other: 'nights'
-      },
-      tooltipNumber: (totalDays) => totalDays
+      numberOfMonths: 2,
+      numberOfColumns: 2
     });
   </script>
 </body>
