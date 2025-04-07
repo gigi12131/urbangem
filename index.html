@@ -23,7 +23,7 @@
       margin-top: 30px;
       background: rgba(255, 255, 255, 0.9);
       padding: 20px;
-      border-radius: 10px;
+      border-radius: 20px;
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
@@ -33,10 +33,10 @@
     .hero-search input,
     .hero-search select,
     .hero-search button {
-      padding: 10px;
+      padding: 12px;
       font-size: 16px;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 30px;
     }
     .hero-search button {
       background-color: #f04e30;
@@ -83,6 +83,7 @@
       display: inline-block;
     }
     .price { font-weight: bold; margin-top: 10px; color: #2a2a2a; }
+    .no-results { display: none; text-align: center; font-size: 18px; color: #d00; margin-top: 20px; }
     footer {
       text-align: center;
       padding: 30px;
@@ -97,14 +98,16 @@
   <h1>Urban Gem – Fresh & Central</h1>
   <p>Located in the heart of Alexandroupoli, Greece</p>
   <form class="hero-search" id="bookingForm">
-    <input type="date" name="checkin" id="checkin" required>
-    <input type="date" name="checkout" id="checkout" required>
+    <input type="text" name="daterange" id="daterange" placeholder="Select dates" required>
     <select name="guests" id="guests" required>
       <option value="">Guests</option>
-      <option value="1">1 guest</option>
-      <option value="2">2 guests</option>
-      <option value="3">3 guests</option>
-      <option value="4">4 guests</option>
+      <option value="1">1 adult</option>
+      <option value="2">2 adults</option>
+      <option value="3">2 adults, 1 child</option>
+      <option value="4">2 adults, 2 children</option>
+      <option value="5">3 adults</option>
+      <option value="6">3 adults, 1 child</option>
+      <option value="7">4 adults</option>
     </select>
     <button type="submit">Search</button>
   </form>
@@ -143,17 +146,27 @@
       </div>
     </div>
   </div>
+  <div class="no-results" id="noResults">❗ Sorry, no apartments are available for your selection.<br>Try adjusting the number of guests or your dates.</div>
 </section>
 
 <footer>
   <p>&copy; 2025 Urban Gem – Fresh & Central</p>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
 <script>
 const prices = {
   'urban-nest': { weekday: 80, weekend: 90 },
   'olive-loft': { weekday: 85, weekend: 95 },
   'studio-light': { weekday: 75, weekend: 85 }
+};
+
+const capacities = {
+  'urban-nest': [1, 2, 3, 4, 5],
+  'olive-loft': [1, 2, 3, 4, 5],
+  'studio-light': [1, 2, 3]
 };
 
 function countNights(checkin, checkout) {
@@ -176,25 +189,46 @@ function calculatePrice(apartmentId, nights) {
   return total;
 }
 
+let checkin = '', checkout = '';
+$(function() {
+  $('#daterange').daterangepicker({
+    autoUpdateInput: false,
+    locale: { cancelLabel: 'Clear' }
+  });
+  $('#daterange').on('apply.daterangepicker', function(ev, picker) {
+    $(this).val(picker.startDate.format('YYYY-MM-DD') + ' to ' + picker.endDate.format('YYYY-MM-DD'));
+    checkin = picker.startDate.format('YYYY-MM-DD');
+    checkout = picker.endDate.format('YYYY-MM-DD');
+  });
+});
+
 document.getElementById('bookingForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  const checkin = document.getElementById('checkin').value;
-  const checkout = document.getElementById('checkout').value;
-  const guests = document.getElementById('guests').value;
-
+  const guests = parseInt(document.getElementById('guests').value);
   if (!checkin || !checkout || !guests) return;
 
   const nights = countNights(checkin, checkout);
   if (nights.length === 0) return;
 
+  let visibleCount = 0;
   document.querySelectorAll('.apartment').forEach(apartment => {
     const id = apartment.getAttribute('data-id');
-    const price = calculatePrice(id, nights);
-    document.getElementById('price-' + id).textContent = `Total: €${price} for ${nights.length} nights`;
+    const fitsGuests = capacities[id].includes(guests);
+    if (!fitsGuests) {
+      apartment.style.display = 'none';
+    } else {
+      visibleCount++;
+      apartment.style.display = 'block';
+      const price = calculatePrice(id, nights);
+      document.getElementById('price-' + id).textContent = `Total: €${price} for ${nights.length} nights`;
+    }
   });
+
+  document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
 });
 </script>
 
 </body>
 </html>
+
 
