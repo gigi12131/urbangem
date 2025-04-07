@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urban Nest – Comfort & Style</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" />
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f7f7f7; color: #333; }
+    header {
+      background: url('urban-nest.jpg') center/cover no-repeat;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+    header h1 {
+      font-size: 40px;
+      background: rgba(0,0,0,0.5);
+      padding: 10px 20px;
+      border-radius: 12px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .description, .calendar-box {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+    }
+    .description h2 {
+      margin-top: 0;
+    }
+    .calendar-box input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+    .buttons a {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      margin-right: 10px;
+      text-decoration: none;
+    }
+    .book { background: #000; color: white; }
+    .whatsapp { background: #25D366; color: white; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Urban Nest – Comfort & Style</h1>
+  </header>
+
+  <div class="container">
+    <div class="description">
+      <h2>About Urban Nest</h2>
+      <p>A beautifully designed one-bedroom apartment featuring a full kitchen, cozy living area, and private balcony. Ideal for couples or solo travelers. Conveniently located in the heart of Alexandroupoli, close to shops, restaurants, and public transport.</p>
+      <p><strong>Pricing:</strong> €80/night (Mon–Thu), €90/night (Fri–Sun)</p>
+    </div>
+
+    <div class="calendar-box">
+      <input type="text" id="datepicker" placeholder="Select your stay dates" readonly>
+      <div class="buttons">
+        <a href="#" class="book">Book Now</a>
+        <a href="https://wa.me/306986789781" class="whatsapp" target="_blank">Contact via WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js"></script>
+  <script>
+    const picker = new Litepicker({
+      element: document.getElementById("datepicker"),
+      singleMode: false,
+      numberOfMonths: 2,
+      numberOfColumns: 2,
+      format: "DD MMM YYYY",
+      autoApply: true
+    });
+  </script>
+</body>
+</html>
