@@ -5,118 +5,195 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Urban Gem – Fresh & Central</title>
   <style>
-    body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #fff; color: #333; }
+    body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #fff; color: #333; }
     header {
       background: url('urban-nest.jpg') no-repeat center center/cover;
       height: 100vh;
       color: white;
-      text-align: center;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      text-align: center;
+      padding: 0 20px;
     }
-    header h1 { font-size: 48px; margin-bottom: 10px; text-shadow: 0 0 5px rgba(0,0,0,0.6); }
+    header h1 { font-size: 48px; margin-bottom: 10px; text-shadow: 0 0 5px rgba(0,0,0,0.5); }
     header p { font-size: 20px; text-shadow: 0 0 4px rgba(0,0,0,0.4); }
-    .btn {
-      margin-top: 20px;
-      background: #f04e30;
-      color: white;
-      padding: 12px 25px;
-      text-decoration: none;
-      border-radius: 6px;
-      font-size: 16px;
-    }
-    section { padding: 60px 20px; max-width: 1000px; margin: auto; }
-    .apartments { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-    .apartment-card {
-      border: 1px solid #ddd;
+    .hero-search {
+      margin-top: 30px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
       border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      color: black;
     }
-    .apartment-card img { width: 100%; height: 200px; object-fit: cover; }
-    .apartment-card div { padding: 15px; }
-    .review { background: #f9f9f9; border-left: 5px solid #f04e30; margin-bottom: 20px; padding: 15px; }
-    form { display: flex; flex-direction: column; gap: 10px; }
-    input, select, textarea, button {
-      padding: 12px;
+    .hero-search input,
+    .hero-search select,
+    .hero-search button {
+      padding: 10px;
       font-size: 16px;
       border: 1px solid #ccc;
       border-radius: 5px;
     }
-    button { background: #f04e30; color: white; border: none; cursor: pointer; }
-    footer { text-align: center; padding: 30px; background: #f0f0f0; margin-top: 60px; }
+    .hero-search button {
+      background-color: #f04e30;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .apartment-listing {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .apartment {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .apartment img {
+      width: 100%;
+      height: auto;
+    }
+    .apartment .info {
+      padding: 20px;
+    }
+    .apartment h3 {
+      margin-top: 0;
+      font-size: 24px;
+    }
+    .apartment p {
+      margin: 10px 0 20px;
+    }
+    .apartment a {
+      text-decoration: none;
+      color: white;
+      background: #f04e30;
+      padding: 10px 20px;
+      border-radius: 5px;
+      display: inline-block;
+    }
+    .price { font-weight: bold; margin-top: 10px; color: #2a2a2a; }
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #f0f0f0;
+      margin-top: 60px;
+    }
   </style>
 </head>
 <body>
 
 <header>
   <h1>Urban Gem – Fresh & Central</h1>
-  <p>Stylish apartments in the heart of Alexandroupoli</p>
-  <a href="#contact" class="btn">Book Now</a>
+  <p>Located in the heart of Alexandroupoli, Greece</p>
+  <form class="hero-search" id="bookingForm">
+    <input type="date" name="checkin" id="checkin" required>
+    <input type="date" name="checkout" id="checkout" required>
+    <select name="guests" id="guests" required>
+      <option value="">Guests</option>
+      <option value="1">1 guest</option>
+      <option value="2">2 guests</option>
+      <option value="3">3 guests</option>
+      <option value="4">4 guests</option>
+    </select>
+    <button type="submit">Search</button>
+  </form>
 </header>
 
-<section id="about">
-  <h2>About Us</h2>
-  <p>We offer three beautiful short-stay apartments in central Alexandroupoli, perfect for couples, solo travelers, or small families. Walk to the sea, cafes, and shops with ease while enjoying a calm, modern home away from home.</p>
-</section>
-
 <section id="apartments">
-  <h2>Our Apartments</h2>
-  <div class="apartments">
-    <div class="apartment-card">
+  <h2 style="text-align: center; margin-bottom: 40px;">Our Apartments</h2>
+  <div class="apartment-listing">
+    <div class="apartment" data-id="urban-nest">
       <img src="urban-nest.jpg" alt="Urban Nest">
-      <div>
+      <div class="info">
         <h3>Urban Nest – Comfort & Style</h3>
-        <p>Cozy 1BR with balcony and full kitchen.<br>€80 Mon–Thu | €90 Fri–Sun</p>
+        <p>A beautifully designed one-bedroom with a full kitchen, balcony, and warm interior. Perfect for couples or solo travelers.</p>
+        <div class="price" id="price-urban-nest"></div>
+        <a href="urban-nest.html">View & Book</a>
       </div>
     </div>
-    <div class="apartment-card">
+
+    <div class="apartment" data-id="olive-loft">
       <img src="olive-loft.jpg" alt="Olive Loft">
-      <div>
+      <div class="info">
         <h3>Olive Loft – Relaxed Elegance</h3>
-        <p>Warm-toned design with a breakfast bar and private balcony.</p>
+        <p>Relax in a cozy loft with wooden accents, bar-style dining, and a private outdoor balcony for your morning coffee.</p>
+        <div class="price" id="price-olive-loft"></div>
+        <a href="olive-loft.html">View & Book</a>
       </div>
     </div>
-    <div class="apartment-card">
+
+    <div class="apartment" data-id="studio-light">
       <img src="studio-light.jpg" alt="The Studio Light">
-      <div>
+      <div class="info">
         <h3>The Studio Light – Minimal & Chic</h3>
-        <p>Modern open-plan studio. Quiet and filled with natural light.</p>
+        <p>Modern and minimalist, this open-plan studio is bright, peaceful, and ideal for digital nomads or a quiet getaway.</p>
+        <div class="price" id="price-studio-light"></div>
+        <a href="studio-light.html">View & Book</a>
       </div>
     </div>
   </div>
 </section>
 
-<section id="reviews">
-  <h2>Guest Reviews</h2>
-  <div class="review">“Spotlessly clean and very central. The host was great!”</div>
-  <div class="review">“Very high quality. We'll definitely return!”</div>
-  <div class="review">“Felt like a boutique hotel. Beautiful design.”</div>
-</section>
-
-<section id="contact">
-  <h2>Contact & Booking</h2>
-  <p>Email: <a href="mailto:gdoukas8991@gmail.com">gdoukas8991@gmail.com</a></p>
-  <p>WhatsApp: <a href="https://wa.me/306986789781">+30 698 678 9781</a></p>
-  <form action="https://formspree.io/f/yourformid" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <select name="apartment" required>
-      <option value="">Select Apartment</option>
-      <option value="Urban Nest">Urban Nest</option>
-      <option value="Olive Loft">Olive Loft</option>
-      <option value="Studio Light">Studio Light</option>
-    </select>
-    <textarea name="message" placeholder="Your message..." required></textarea>
-    <button type="submit">Send Booking Request</button>
-  </form>
-</section>
-
 <footer>
-  <p>&copy; 2025 Urban Gem – Fresh & Central. All rights reserved.</p>
+  <p>&copy; 2025 Urban Gem – Fresh & Central</p>
 </footer>
+
+<script>
+const prices = {
+  'urban-nest': { weekday: 80, weekend: 90 },
+  'olive-loft': { weekday: 85, weekend: 95 },
+  'studio-light': { weekday: 75, weekend: 85 }
+};
+
+function countNights(checkin, checkout) {
+  const start = new Date(checkin);
+  const end = new Date(checkout);
+  const nights = [];
+  while (start < end) {
+    nights.push(new Date(start));
+    start.setDate(start.getDate() + 1);
+  }
+  return nights;
+}
+
+function calculatePrice(apartmentId, nights) {
+  let total = 0;
+  for (const night of nights) {
+    const isWeekend = night.getDay() === 0 || night.getDay() === 6;
+    total += isWeekend ? prices[apartmentId].weekend : prices[apartmentId].weekday;
+  }
+  return total;
+}
+
+document.getElementById('bookingForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const checkin = document.getElementById('checkin').value;
+  const checkout = document.getElementById('checkout').value;
+  const guests = document.getElementById('guests').value;
+
+  if (!checkin || !checkout || !guests) return;
+
+  const nights = countNights(checkin, checkout);
+  if (nights.length === 0) return;
+
+  document.querySelectorAll('.apartment').forEach(apartment => {
+    const id = apartment.getAttribute('data-id');
+    const price = calculatePrice(id, nights);
+    document.getElementById('price-' + id).textContent = `Total: €${price} for ${nights.length} nights`;
+  });
+});
+</script>
 
 </body>
 </html>
